@@ -22,16 +22,16 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      {/* Top bar */}
-      <div className="bg-primary text-primary-foreground py-2 hidden md:block">
+      {/* Top bar - hidden on mobile */}
+      <div className="bg-primary text-primary-foreground py-1.5 hidden md:block">
         <div className="container-custom flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
             <a href="tel:+919999999999" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-              <Phone className="h-4 w-4" />
+              <Phone className="h-3.5 w-3.5" />
               <span>+91 99999 99999</span>
             </a>
             <a href="mailto:info@microengineering.in" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-              <Mail className="h-4 w-4" />
+              <Mail className="h-3.5 w-3.5" />
               <span>info@microengineering.in</span>
             </a>
           </div>
@@ -42,15 +42,17 @@ const Header = () => {
       </div>
 
       {/* Main navigation */}
-      <nav className="container-custom py-4">
+      <nav className="container-custom py-2 md:py-3">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-3">
-            <img src={logo} alt="Micro Engineering Logo" className="h-12 w-auto" />
+          {/* Logo - smaller on mobile */}
+          <Link to="/" className="flex items-center gap-2">
+            <img src={logo} alt="Micro Engineering Logo" className="h-8 md:h-10 w-auto" />
             <div className="hidden sm:block">
-              <h1 className="text-xl font-bold text-foreground">Micro Engineering</h1>
-              <p className="text-xs text-muted-foreground">Precision Manufacturing</p>
+              <h1 className="text-base md:text-lg font-bold text-foreground leading-tight">Micro Engineering</h1>
+              <p className="text-[10px] md:text-xs text-muted-foreground">Precision Manufacturing</p>
             </div>
+            {/* Show short name on mobile */}
+            <span className="sm:hidden text-sm font-bold text-foreground">ME</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -59,7 +61,7 @@ const Header = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
                   isActive(link.path)
                     ? "bg-primary text-primary-foreground"
                     : "text-foreground hover:bg-secondary hover:text-foreground"
@@ -70,33 +72,33 @@ const Header = () => {
             ))}
           </div>
 
-          {/* CTA Button */}
+          {/* CTA Button - smaller on tablet */}
           <div className="hidden lg:flex items-center gap-4">
-            <Button asChild variant="cta">
+            <Button asChild variant="cta" size="sm">
               <Link to="/contact">Get Quote</Link>
             </Button>
           </div>
 
           {/* Mobile menu button */}
           <button
-            className="lg:hidden p-2 rounded-md hover:bg-secondary"
+            className="lg:hidden p-1.5 rounded-md hover:bg-secondary"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden mt-4 pb-4 border-t border-border pt-4 animate-fade-in">
-            <div className="flex flex-col gap-2">
+          <div className="lg:hidden mt-3 pb-3 border-t border-border pt-3 animate-fade-in">
+            <div className="flex flex-col gap-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`px-4 py-3 rounded-md text-sm font-medium transition-colors ${
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                     isActive(link.path)
                       ? "bg-primary text-primary-foreground"
                       : "text-foreground hover:bg-secondary"
@@ -105,7 +107,7 @@ const Header = () => {
                   {link.name}
                 </Link>
               ))}
-              <Button asChild variant="cta" className="mt-4">
+              <Button asChild variant="cta" size="sm" className="mt-2">
                 <Link to="/contact" onClick={() => setIsMenuOpen(false)}>Get Quote</Link>
               </Button>
             </div>
