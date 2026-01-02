@@ -26,11 +26,11 @@ const Header = () => {
       <div className="bg-primary text-primary-foreground py-2 hidden md:block">
         <div className="container-custom flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
-            <a href="tel:+919999999999" className="flex items-center gap-2 hover:text-accent transition-colors">
+            <a href="tel:+919999999999" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <Phone className="h-4 w-4" />
               <span>+91 99999 99999</span>
             </a>
-            <a href="mailto:info@microengineering.in" className="flex items-center gap-2 hover:text-accent transition-colors">
+            <a href="mailto:info@microengineering.in" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <Mail className="h-4 w-4" />
               <span>info@microengineering.in</span>
             </a>
@@ -62,7 +62,7 @@ const Header = () => {
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                   isActive(link.path)
                     ? "bg-primary text-primary-foreground"
-                    : "text-foreground hover:bg-secondary hover:text-primary"
+                    : "text-foreground hover:bg-secondary hover:text-foreground"
                 }`}
               >
                 {link.name}
@@ -72,7 +72,7 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="hidden lg:flex items-center gap-4">
-            <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90">
+            <Button asChild variant="cta">
               <Link to="/contact">Get Quote</Link>
             </Button>
           </div>
@@ -105,7 +105,7 @@ const Header = () => {
                   {link.name}
                 </Link>
               ))}
-              <Button asChild className="mt-4 bg-accent text-accent-foreground hover:bg-accent/90">
+              <Button asChild variant="cta" className="mt-4">
                 <Link to="/contact" onClick={() => setIsMenuOpen(false)}>Get Quote</Link>
               </Button>
             </div>

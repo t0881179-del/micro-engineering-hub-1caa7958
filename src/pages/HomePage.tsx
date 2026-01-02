@@ -51,28 +51,28 @@ const HomePage = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative min-h-[600px] md:min-h-[700px] flex items-center pt-24">
+      <section className="relative min-h-[600px] md:min-h-[700px] flex items-center">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroImage})` }}
         />
-        <div className="absolute inset-0 overlay-gradient" />
+        <div className="absolute inset-0 bg-gradient-to-r from-industrial-dark/90 to-industrial-dark/40" />
         <div className="relative z-10 container-custom py-20">
           <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 animate-slide-up">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 animate-slide-up">
               Precision Manufacturing Excellence
             </h1>
-            <p className="text-lg md:text-xl text-primary-foreground/90 mb-8 leading-relaxed animate-slide-up" style={{ animationDelay: "0.1s" }}>
+            <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed animate-slide-up" style={{ animationDelay: "0.1s" }}>
               Your trusted partner for high-quality CNC machining, VMC operations, stamping, and custom fabrication. 
               We deliver prototype to production with <strong>no minimum order quantity</strong>.
             </p>
             <div className="flex flex-wrap gap-4 animate-slide-up" style={{ animationDelay: "0.2s" }}>
-              <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base">
+              <Button asChild size="lg" variant="cta" className="text-base">
                 <Link to="/contact">
                   Get a Quote <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="bg-primary-foreground/10 text-primary-foreground border-primary-foreground/30 hover:bg-primary-foreground/20 text-base">
+              <Button asChild size="lg" variant="outline" className="bg-white/10 text-white border-white/30 hover:bg-white/20 text-base">
                 <Link to="/about">Learn More</Link>
               </Button>
             </div>
@@ -215,7 +215,7 @@ const HomePage = () => {
                   "Competitive pricing without compromising quality",
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-cta mt-0.5 flex-shrink-0" />
                     <span className="text-primary-foreground/90">{item}</span>
                   </li>
                 ))}
@@ -229,7 +229,7 @@ const HomePage = () => {
                 { icon: Cog, title: "Advanced Tech", desc: "Latest manufacturing equipment" },
               ].map((item, index) => (
                 <div key={index} className="bg-primary-foreground/10 rounded-lg p-6 text-center">
-                  <item.icon className="h-10 w-10 text-accent mx-auto mb-3" />
+                  <item.icon className="h-10 w-10 text-cta mx-auto mb-3" />
                   <h4 className="font-semibold mb-1">{item.title}</h4>
                   <p className="text-sm text-primary-foreground/70">{item.desc}</p>
                 </div>
@@ -250,7 +250,7 @@ const HomePage = () => {
             we handle everything from prototypes to large-scale production.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base">
+            <Button asChild size="lg" variant="cta" className="text-base">
               <Link to="/contact">
                 Request a Quote <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
