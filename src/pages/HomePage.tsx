@@ -47,9 +47,9 @@ const HomePage = () => {
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroImage})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-industrial-dark/90 to-industrial-dark/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
         <div className="relative z-10 container-custom py-20">
-          <div className="max-w-2xl">
+          <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 animate-slide-up">
               Precision Manufacturing Excellence
             </h1>
@@ -63,13 +63,24 @@ const HomePage = () => {
                   Get a Quote <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="bg-white/10 text-white border-white/30 hover:bg-white/20 text-base">
+              <Button asChild size="lg" variant="outline" className="backdrop-blur-sm bg-white/10 text-white border-white/20 hover:bg-white/20 text-base">
                 <Link to="/about">Learn More</Link>
               </Button>
             </div>
-            <p className="text-white/80 text-base md:text-lg mt-6 animate-slide-up font-medium" style={{ animationDelay: "0.3s" }}>
-              25+ Years Experience | 2500+ Projects | No MOQ
-            </p>
+            <div className="mt-12 flex flex-wrap gap-8 text-sm animate-slide-up" style={{ animationDelay: "0.3s" }}>
+              <div>
+                <span className="font-bold text-2xl block">25+</span>
+                <span className="text-white/80">Years Experience</span>
+              </div>
+              <div>
+                <span className="font-bold text-2xl block">2500+</span>
+                <span className="text-white/80">Projects Completed</span>
+              </div>
+              <div>
+                <span className="font-bold text-2xl block">No MOQ</span>
+                <span className="text-white/80">Minimum Order</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
