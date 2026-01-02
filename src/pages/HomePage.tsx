@@ -37,12 +37,6 @@ const capabilities = [
   },
 ];
 
-const stats = [
-  { value: "25+", label: "Years Experience" },
-  { value: "500+", label: "Projects Completed" },
-  { value: "100+", label: "Happy Clients" },
-  { value: "No MOQ", label: "Minimum Order" },
-];
 
 const HomePage = () => {
   return (
@@ -73,20 +67,9 @@ const HomePage = () => {
                 <Link to="/about">Learn More</Link>
               </Button>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Bar */}
-      <section className="bg-primary py-8">
-        <div className="container-custom">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary-foreground mb-1">{stat.value}</div>
-                <div className="text-sm text-primary-foreground/80">{stat.label}</div>
-              </div>
-            ))}
+            <p className="text-white/70 text-sm mt-6 animate-slide-up" style={{ animationDelay: "0.3s" }}>
+              25+ Years Experience | 2500+ Projects | No MOQ
+            </p>
           </div>
         </div>
       </section>
