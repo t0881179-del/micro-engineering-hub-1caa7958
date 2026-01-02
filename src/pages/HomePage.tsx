@@ -69,15 +69,15 @@ const HomePage = () => {
             </div>
             <div className="mt-12 flex flex-wrap gap-8 text-sm animate-slide-up" style={{ animationDelay: "0.3s" }}>
               <div>
-                <span className="font-bold text-2xl block">25+</span>
+                <span className="font-bold text-2xl block text-white">25+</span>
                 <span className="text-white/80">Years Experience</span>
               </div>
               <div>
-                <span className="font-bold text-2xl block">2500+</span>
+                <span className="font-bold text-2xl block text-white">2500+</span>
                 <span className="text-white/80">Projects Completed</span>
               </div>
               <div>
-                <span className="font-bold text-2xl block">No MOQ</span>
+                <span className="font-bold text-2xl block text-white">No MOQ</span>
                 <span className="text-white/80">Minimum Order</span>
               </div>
             </div>
