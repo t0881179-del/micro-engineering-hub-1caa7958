@@ -1,20 +1,17 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle, Factory, Wrench, Cog, Shield, Award, Clock } from "lucide-react";
+import { ArrowRight, CheckCircle, Factory, Wrench, Cog, Shield, Award, Clock, Plane, Car, Heart, Cpu, Zap, Settings, BarChart3 } from "lucide-react";
 import heroImage from "@/assets/hero-manufacturing.png";
-import cncImage from "@/assets/cnc-machining.png";
-import precisionImage from "@/assets/precision-components.png";
-import solutionsImage from "@/assets/custom-solutions.png";
 
 const industries = [
-  { name: "Automotive", icon: "🚗" },
-  { name: "Aerospace", icon: "✈️" },
-  { name: "Medical Devices", icon: "🏥" },
-  { name: "Electronics", icon: "💻" },
-  { name: "Defense", icon: "🛡️" },
-  { name: "Energy", icon: "⚡" },
-  { name: "Industrial", icon: "🏭" },
-  { name: "Consumer Goods", icon: "📦" },
+  { name: "Aerospace", subtitle: "Precision parts for aircraft", icon: Plane },
+  { name: "Automotive", subtitle: "High-performance components", icon: Car },
+  { name: "Medical", subtitle: "Surgical instruments", icon: Heart },
+  { name: "Electronics", subtitle: "Precision connectors", icon: Cpu },
+  { name: "Defense", subtitle: "Military-grade parts", icon: Shield },
+  { name: "Energy", subtitle: "Power generation components", icon: Zap },
+  { name: "Industrial", subtitle: "Manufacturing equipment", icon: Settings },
+  { name: "Machinery", subtitle: "Heavy equipment parts", icon: BarChart3 },
 ];
 
 const capabilities = [
@@ -107,10 +104,13 @@ const HomePage = () => {
             {industries.map((industry, index) => (
               <div
                 key={index}
-                className="bg-card rounded-lg p-6 text-center card-hover border border-border"
+                className="bg-card rounded-xl p-6 text-center card-hover border border-border"
               >
-                <div className="text-4xl mb-3">{industry.icon}</div>
-                <h3 className="font-semibold text-foreground">{industry.name}</h3>
+                <div className="w-14 h-14 mx-auto mb-4 bg-primary/10 rounded-xl flex items-center justify-center">
+                  <industry.icon className="h-7 w-7 text-primary" />
+                </div>
+                <h3 className="font-semibold text-foreground mb-1">{industry.name}</h3>
+                <p className="text-sm text-muted-foreground">{industry.subtitle}</p>
               </div>
             ))}
           </div>
@@ -141,59 +141,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Featured Products/Services */}
-      <section className="section-padding bg-background">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">What We Offer</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              From precision components to complete assemblies, we deliver excellence at every step.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                image: precisionImage,
-                title: "Precision Components",
-                description: "High-accuracy machined parts for critical applications across industries.",
-                link: "/products",
-              },
-              {
-                image: cncImage,
-                title: "Manufacturing Services",
-                description: "Complete manufacturing solutions from prototyping to mass production.",
-                link: "/services",
-              },
-              {
-                image: solutionsImage,
-                title: "Custom Solutions",
-                description: "Tailored manufacturing solutions designed for your specific needs.",
-                link: "/solutions",
-              },
-            ].map((item, index) => (
-              <div key={index} className="group bg-card rounded-lg overflow-hidden card-hover border border-border">
-                <div className="aspect-[16/9] overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-foreground mb-2">{item.title}</h3>
-                  <p className="text-muted-foreground text-sm mb-4">{item.description}</p>
-                  <Link
-                    to={item.link}
-                    className="inline-flex items-center text-primary hover:text-primary-light font-medium text-sm"
-                  >
-                    Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Why Choose Us */}
       <section className="section-padding bg-industrial-dark text-primary-foreground">
