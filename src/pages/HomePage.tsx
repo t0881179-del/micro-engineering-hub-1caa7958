@@ -67,7 +67,7 @@ const HomePage = () => {
                 <Link to="/about">Learn More</Link>
               </Button>
             </div>
-            <p className="text-white/70 text-sm mt-6 animate-slide-up" style={{ animationDelay: "0.3s" }}>
+            <p className="text-white/80 text-base md:text-lg mt-6 animate-slide-up font-medium" style={{ animationDelay: "0.3s" }}>
               25+ Years Experience | 2500+ Projects | No MOQ
             </p>
           </div>
