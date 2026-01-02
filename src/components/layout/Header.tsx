@@ -44,15 +44,13 @@ const Header = () => {
       {/* Main navigation */}
       <nav className="container-custom py-2 md:py-3">
         <div className="flex items-center justify-between">
-          {/* Logo - smaller on mobile */}
-          <Link to="/" className="flex items-center gap-2">
+          {/* Logo - smaller on mobile, same content */}
+          <Link to="/" className="flex items-center gap-2 md:gap-3">
             <img src={logo} alt="Micro Engineering Logo" className="h-8 md:h-10 w-auto" />
-            <div className="hidden sm:block">
-              <h1 className="text-base md:text-lg font-bold text-foreground leading-tight">Micro Engineering</h1>
-              <p className="text-[10px] md:text-xs text-muted-foreground">Precision Manufacturing</p>
+            <div>
+              <h1 className="text-sm md:text-lg font-bold text-foreground leading-tight">Micro Engineering</h1>
+              <p className="text-[9px] md:text-xs text-muted-foreground">Precision Manufacturing</p>
             </div>
-            {/* Show short name on mobile */}
-            <span className="sm:hidden text-sm font-bold text-foreground">ME</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -72,7 +70,7 @@ const Header = () => {
             ))}
           </div>
 
-          {/* CTA Button - smaller on tablet */}
+          {/* CTA Button */}
           <div className="hidden lg:flex items-center gap-4">
             <Button asChild variant="cta" size="sm">
               <Link to="/contact">Get Quote</Link>
