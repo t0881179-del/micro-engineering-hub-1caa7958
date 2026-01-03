@@ -122,7 +122,7 @@ const SolutionsPage = () => {
         <div className="container-custom">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Industry-Specific Solutions</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-center">
+            <p className="text-muted-foreground max-w-2xl mx-auto">
               Deep expertise across multiple industries with specialized solutions for each sector.
             </p>
           </div>
