@@ -40,7 +40,6 @@ const capabilities = [
   "Sheet Metal Fabrication",
   "Tube Bending & Forming",
   "Custom Assembly",
-  "Surface Treatment",
   "Quality Inspection",
 ];
 
@@ -134,9 +133,9 @@ const AboutPage = () => {
                 Manufacturing Capabilities
               </h2>
               <p className="text-muted-foreground mb-8 leading-relaxed">
-                Our state-of-the-art facility is equipped with the latest CNC machines, VMC centers, 
-                and precision tooling to handle a wide range of manufacturing requirements. From simple 
-                components to complex assemblies, we have the capability to deliver.
+                Our state-of-the-art facility is equipped with the latest CNC machines, VMC machines, 
+                stamping presses and precision tooling to handle a wide range of manufacturing requirements. 
+                From simple components to complex assemblies, we have the capability to deliver.
               </p>
               <div className="grid grid-cols-2 gap-4">
                 {capabilities.map((capability, index) => (
@@ -156,7 +155,7 @@ const AboutPage = () => {
               <div className="bg-card border border-border rounded-lg p-6 text-center">
                 <Cog className="h-10 w-10 text-primary mx-auto mb-3" />
                 <div className="text-3xl font-bold text-foreground mb-1">20+</div>
-                <div className="text-sm text-muted-foreground">CNC Machines</div>
+                <div className="text-sm text-muted-foreground">Machines</div>
               </div>
               <div className="bg-card border border-border rounded-lg p-6 text-center">
                 <Users className="h-10 w-10 text-primary mx-auto mb-3" />
