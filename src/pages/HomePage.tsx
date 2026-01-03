@@ -1,42 +1,45 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle, Cog, Shield, Award, Clock, Car, Heart, Cpu, Zap, Settings, BarChart3, Wrench } from "lucide-react";
+import { ArrowRight, CheckCircle, Cog, Shield, Award, Clock, Car, Heart, Cpu, Zap, Settings } from "lucide-react";
 import heroImage from "@/assets/hero-manufacturing.png";
-import capabilitiesIcons from "@/assets/capabilities-icons.png";
+import iconCnc from "@/assets/icon-cnc.png";
+import iconVmc from "@/assets/icon-vmc.png";
+import iconStamping from "@/assets/icon-stamping.png";
+import iconPrototype from "@/assets/icon-prototype.png";
+import iconMachinery from "@/assets/icon-machinery.png";
 
 const industries = [
-  { name: "Automotive", subtitle: "High-performance components", icon: Car },
-  { name: "Medical", subtitle: "Surgical instruments", icon: Heart },
-  { name: "Electronics", subtitle: "Precision connectors", icon: Cpu },
-  { name: "Defense", subtitle: "Military-grade parts", icon: Shield },
-  { name: "Energy", subtitle: "Power generation components", icon: Zap },
-  { name: "Industrial", subtitle: "Manufacturing equipment", icon: Settings },
-  { name: "Machinery", subtitle: "Heavy equipment parts", icon: BarChart3 },
+  { name: "Automotive", subtitle: "High-performance components", icon: Car, customIcon: null },
+  { name: "Medical", subtitle: "Surgical instruments", icon: Heart, customIcon: null },
+  { name: "Electronics", subtitle: "Precision connectors", icon: Cpu, customIcon: null },
+  { name: "Defense", subtitle: "Military-grade parts", icon: Shield, customIcon: null },
+  { name: "Energy", subtitle: "Power generation components", icon: Zap, customIcon: null },
+  { name: "Industrial", subtitle: "Manufacturing equipment", icon: Settings, customIcon: null },
+  { name: "Machinery", subtitle: "Heavy equipment parts", icon: null, customIcon: iconMachinery },
 ];
 
 const capabilities = [
   {
     title: "CNC Machining",
     description: "High-precision CNC turning and milling for complex geometries",
-    iconPosition: "0% 0%",
+    icon: iconCnc,
   },
   {
     title: "VMC Machining",
     description: "Vertical machining centers for accurate multi-axis operations",
-    iconPosition: "100% 0%",
+    icon: iconVmc,
   },
   {
     title: "Stamping, Tube Bending & Metal Fabrication",
     description: "Sheet metal stamping, tube bending and custom fabrication solutions",
-    iconPosition: "0% 100%",
+    icon: iconStamping,
   },
   {
     title: "Prototype Parts",
     description: "Rapid prototyping with no minimum order quantity",
-    iconPosition: "100% 100%",
+    icon: iconPrototype,
   },
 ];
-
 
 const HomePage = () => {
   return (
@@ -101,7 +104,11 @@ const HomePage = () => {
                 className="bg-card rounded-xl p-6 text-center card-hover border border-border"
               >
                 <div className="w-14 h-14 mx-auto mb-4 bg-primary/10 rounded-xl flex items-center justify-center">
-                  <industry.icon className="h-7 w-7 text-primary" />
+                  {industry.customIcon ? (
+                    <img src={industry.customIcon} alt={industry.name} className="h-8 w-8 object-contain" />
+                  ) : industry.icon ? (
+                    <industry.icon className="h-7 w-7 text-primary" />
+                  ) : null}
                 </div>
                 <h3 className="font-semibold text-foreground mb-1">{industry.name}</h3>
                 <p className="text-sm text-muted-foreground">{industry.subtitle}</p>
@@ -126,14 +133,13 @@ const HomePage = () => {
                 key={index}
                 className="bg-card rounded-lg p-6 card-hover border border-border"
               >
-                <div 
-                  className="h-20 w-20 mb-4 bg-contain bg-no-repeat bg-center"
-                  style={{ 
-                    backgroundImage: `url(${capabilitiesIcons})`,
-                    backgroundPosition: capability.iconPosition,
-                    backgroundSize: '200% 200%'
-                  }}
-                />
+                <div className="h-16 w-16 mb-4 bg-primary/10 rounded-xl flex items-center justify-center p-2">
+                  <img 
+                    src={capability.icon} 
+                    alt={capability.title} 
+                    className="h-full w-full object-contain"
+                  />
+                </div>
                 <h3 className="text-lg font-semibold text-foreground mb-2">{capability.title}</h3>
                 <p className="text-muted-foreground text-sm">{capability.description}</p>
               </div>
