@@ -76,7 +76,7 @@ const HomePage = () => {
                 <span className="text-white/80">Years Experience</span>
               </div>
               <div>
-                <span className="font-bold text-2xl block text-white">1500+</span>
+                <span className="font-bold text-2xl block text-white">2500+</span>
                 <span className="text-white/80">Projects Completed</span>
               </div>
               <div>
@@ -101,7 +101,7 @@ const HomePage = () => {
             {industries.map((industry, index) => (
               <div
                 key={index}
-                className="bg-muted rounded-xl p-6 text-center card-hover border border-border/60 shadow-sm w-[calc(50%-12px)] md:w-[calc(25%-18px)]"
+                className="bg-card rounded-xl p-6 text-center card-hover border border-border w-[calc(50%-12px)] md:w-[calc(25%-18px)]"
               >
                 <div className="w-14 h-14 mx-auto mb-4 bg-primary/10 rounded-xl flex items-center justify-center">
                   {industry.customIcon ? (
