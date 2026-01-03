@@ -131,9 +131,9 @@ const HomePage = () => {
             {capabilities.map((capability, index) => (
               <div
                 key={index}
-                className="bg-card rounded-lg p-6 card-hover border border-border group"
+                className="bg-card rounded-lg p-6 card-hover border border-border group text-center"
               >
-                <div className="h-20 w-20 mb-5 bg-primary/10 rounded-2xl flex items-center justify-center p-3 transition-transform duration-300 group-hover:scale-110">
+                <div className="h-24 w-24 mb-5 mx-auto bg-primary/10 rounded-2xl flex items-center justify-center p-4 transition-transform duration-300 group-hover:scale-110">
                   <img 
                     src={capability.icon} 
                     alt={capability.title} 
