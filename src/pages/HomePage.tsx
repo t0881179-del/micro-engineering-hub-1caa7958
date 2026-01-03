@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle, Factory, Wrench, Cog, Shield, Award, Clock, Plane, Car, Heart, Cpu, Zap, Settings, BarChart3 } from "lucide-react";
+import { ArrowRight, CheckCircle, Cog, Shield, Award, Clock, Car, Heart, Cpu, Zap, Settings, BarChart3, Wrench } from "lucide-react";
 import heroImage from "@/assets/hero-manufacturing.png";
+import capabilitiesIcons from "@/assets/capabilities-icons.png";
 
 const industries = [
-  { name: "Aerospace", subtitle: "Precision parts for aircraft", icon: Plane },
   { name: "Automotive", subtitle: "High-performance components", icon: Car },
   { name: "Medical", subtitle: "Surgical instruments", icon: Heart },
   { name: "Electronics", subtitle: "Precision connectors", icon: Cpu },
@@ -18,22 +18,22 @@ const capabilities = [
   {
     title: "CNC Machining",
     description: "High-precision CNC turning and milling for complex geometries",
-    icon: Cog,
+    iconPosition: "0% 0%",
   },
   {
     title: "VMC Machining",
     description: "Vertical machining centers for accurate multi-axis operations",
-    icon: Factory,
+    iconPosition: "100% 0%",
   },
   {
-    title: "Stamping & Fabrication",
-    description: "Sheet metal stamping and custom fabrication solutions",
-    icon: Wrench,
+    title: "Stamping, Tube Bending & Metal Fabrication",
+    description: "Sheet metal stamping, tube bending and custom fabrication solutions",
+    iconPosition: "0% 100%",
   },
   {
     title: "Prototype Parts",
     description: "Rapid prototyping with no minimum order quantity",
-    icon: Shield,
+    iconPosition: "100% 100%",
   },
 ];
 
@@ -126,8 +126,15 @@ const HomePage = () => {
                 key={index}
                 className="bg-card rounded-lg p-6 card-hover border border-border"
               >
-                <capability.icon className="h-12 w-12 text-primary mb-4" />
-                <h3 className="text-xl font-semibold text-foreground mb-2">{capability.title}</h3>
+                <div 
+                  className="h-20 w-20 mb-4 bg-contain bg-no-repeat bg-center"
+                  style={{ 
+                    backgroundImage: `url(${capabilitiesIcons})`,
+                    backgroundPosition: capability.iconPosition,
+                    backgroundSize: '200% 200%'
+                  }}
+                />
+                <h3 className="text-lg font-semibold text-foreground mb-2">{capability.title}</h3>
                 <p className="text-muted-foreground text-sm">{capability.description}</p>
               </div>
             ))}
