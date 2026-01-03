@@ -30,30 +30,6 @@ const solutions = [
     ],
     image: cncImage,
   },
-  {
-    icon: Target,
-    title: "Precision Engineering",
-    description: "High-precision manufacturing for critical applications requiring micron-level accuracy and consistency.",
-    benefits: [
-      "Tolerance up to ±0.005mm",
-      "CMM inspection capability",
-      "SPC and process control",
-      "Certification and documentation",
-    ],
-    image: precisionImage,
-  },
-  {
-    icon: Zap,
-    title: "Rapid Manufacturing",
-    description: "Quick-turn manufacturing solutions for urgent requirements without compromising on quality.",
-    benefits: [
-      "Express turnaround options",
-      "Prototype to production",
-      "Dedicated project management",
-      "Expedited shipping",
-    ],
-    image: customImage,
-  },
 ];
 
 const industries = [
