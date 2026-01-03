@@ -232,8 +232,6 @@ const ServicesPage = () => {
                   "Powder Coating",
                   "Electroplating",
                   "Passivation",
-                  "Quality Testing",
-                  "Packaging",
                 ].map((service, index) => (
                   <div key={index} className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" />
