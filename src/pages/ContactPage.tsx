@@ -14,7 +14,7 @@ const ContactPage = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setTimeout(() => {
-      toast({ title: "Inquiry Sent!", description: "We'll get back to you within 24 hours." });
+      toast({ title: "Enquiry Sent!", description: "We'll get back to you within 24 hours." });
       setFormData({ name: "", email: "", phone: "", company: "", message: "" });
       setIsSubmitting(false);
     }, 1000);
@@ -35,8 +35,7 @@ const ContactPage = () => {
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-12">
             <div>
-              <h2 className="text-2xl font-bold text-foreground mb-2">Send Us an Inquiry</h2>
-              <p className="text-sm text-muted-foreground mb-6">* Fields are required</p>
+              <h2 className="text-2xl font-bold text-foreground mb-6">Send Us an Enquiry</h2>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid md:grid-cols-2 gap-4">
                   <Input placeholder="Your Name *" required value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
@@ -47,8 +46,9 @@ const ContactPage = () => {
                   <Input placeholder="Company Name" value={formData.company} onChange={(e) => setFormData({ ...formData, company: e.target.value })} />
                 </div>
                 <Textarea placeholder="Your Message / Requirements *" required rows={5} value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} />
+                <p className="text-sm text-red-500 italic">* Fields are required</p>
                 <Button type="submit" className="w-full bg-accent text-accent-foreground hover:bg-accent/90" disabled={isSubmitting}>
-                  {isSubmitting ? "Sending..." : "Send Inquiry"}
+                  {isSubmitting ? "Sending..." : "Send Enquiry"}
                 </Button>
               </form>
             </div>
