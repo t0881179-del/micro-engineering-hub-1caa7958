@@ -219,11 +219,10 @@ const ServicesPage = () => {
             </div>
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Value-Added Services
+                Additional Services
               </h2>
               <p className="text-primary-foreground/80 mb-6 leading-relaxed">
-                Beyond core manufacturing, we offer a range of value-added services to deliver 
-                complete solutions for your requirements.
+                Beyond core manufacturing, we offer a range of value-added services to deliver complete solutions for your requirements, through our trusted partners.
               </p>
               <div className="grid grid-cols-2 gap-4">
                 {[
