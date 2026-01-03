@@ -46,7 +46,7 @@ const ContactPage = () => {
                   <Input placeholder="Company Name" value={formData.company} onChange={(e) => setFormData({ ...formData, company: e.target.value })} />
                 </div>
                 <Textarea placeholder="Your Message / Requirements *" required rows={5} value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} />
-                <p className="text-sm text-red-500 italic">* Fields are required</p>
+                <p className="text-sm text-muted-foreground italic">* Fields are required</p>
                 <Button type="submit" className="w-full bg-accent text-accent-foreground hover:bg-accent/90" disabled={isSubmitting}>
                   {isSubmitting ? "Sending..." : "Send Enquiry"}
                 </Button>
