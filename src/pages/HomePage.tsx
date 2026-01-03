@@ -97,11 +97,11 @@ const HomePage = () => {
               Delivering precision manufacturing solutions across diverse sectors with unwavering quality standards.
             </p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="flex flex-wrap justify-center gap-6">
             {industries.map((industry, index) => (
               <div
                 key={index}
-                className="bg-card rounded-xl p-6 text-center card-hover border border-border"
+                className="bg-card rounded-xl p-6 text-center card-hover border border-border w-[calc(50%-12px)] md:w-[calc(25%-18px)]"
               >
                 <div className="w-14 h-14 mx-auto mb-4 bg-primary/10 rounded-xl flex items-center justify-center">
                   {industry.customIcon ? (
