@@ -110,11 +110,11 @@ const ServicesPage = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <div key={index} className="bg-card rounded-lg p-6 card-hover border border-border">
-                <div className="h-20 w-20 mb-4 flex items-center justify-center">
+                <div className="h-28 w-28 mb-4 flex items-center justify-center">
                   {service.isAssembly ? (
                     <div className="relative">
-                      <Wrench className="h-12 w-12 text-primary" />
-                      <Sparkles className="h-5 w-5 text-primary absolute -top-1 -right-1" />
+                      <Wrench className="h-20 w-20 text-primary" />
+                      <Sparkles className="h-6 w-6 text-primary absolute -top-2 -right-2" />
                     </div>
                   ) : service.customIcon ? (
                     <img src={service.customIcon} alt={service.title} className="h-full w-full object-contain" />
