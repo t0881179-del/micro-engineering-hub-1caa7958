@@ -38,10 +38,6 @@ const industries = [
     description: "Precision components for OEMs and tier suppliers - engine parts, transmission components, chassis elements.",
   },
   {
-    name: "Aerospace",
-    description: "High-precision parts meeting stringent aerospace standards for structural and functional components.",
-  },
-  {
     name: "Medical Devices",
     description: "Biocompatible materials and cleanroom-compatible manufacturing for medical equipment and instruments.",
   },
