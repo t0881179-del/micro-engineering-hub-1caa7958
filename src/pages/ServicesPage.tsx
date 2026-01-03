@@ -1,12 +1,17 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle, Cog, Factory, Wrench, Settings, Layers, Ruler } from "lucide-react";
+import { ArrowRight, CheckCircle, Wrench, Sparkles } from "lucide-react";
 import cncImage from "@/assets/cnc-machining.png";
 import customImage from "@/assets/custom-solutions.png";
+import iconCnc from "@/assets/icon-cnc.png";
+import iconVmc from "@/assets/icon-vmc.png";
+import iconStamping from "@/assets/icon-stamping.png";
+import iconFabrication from "@/assets/icon-fabrication.png";
+import iconBending from "@/assets/icon-bending.png";
 
 const services = [
   {
-    icon: Cog,
+    customIcon: iconCnc,
     title: "CNC Machining",
     description: "Precision CNC turning and milling services for complex components with tight tolerances. Multi-axis capabilities for intricate geometries.",
     features: [
@@ -17,7 +22,7 @@ const services = [
     ],
   },
   {
-    icon: Factory,
+    customIcon: iconVmc,
     title: "VMC Machining",
     description: "Vertical Machining Center operations for precision milling, drilling, and tapping. Ideal for prismatic parts and mold components.",
     features: [
@@ -28,7 +33,7 @@ const services = [
     ],
   },
   {
-    icon: Wrench,
+    customIcon: iconStamping,
     title: "Stamping",
     description: "Sheet metal stamping services for high-volume production. Progressive die stamping, deep drawing, and forming operations.",
     features: [
@@ -39,7 +44,7 @@ const services = [
     ],
   },
   {
-    icon: Layers,
+    customIcon: iconFabrication,
     title: "Fabrication",
     description: "Custom metal fabrication including cutting, bending, welding, and assembly. Complete solutions from raw material to finished product.",
     features: [
@@ -50,7 +55,7 @@ const services = [
     ],
   },
   {
-    icon: Ruler,
+    customIcon: iconBending,
     title: "Tube Bending",
     description: "Precision tube bending and forming for automotive, furniture, and industrial applications. CNC tube bending for consistent results.",
     features: [
@@ -61,7 +66,7 @@ const services = [
     ],
   },
   {
-    icon: Settings,
+    isAssembly: true,
     title: "Assembly Services",
     description: "Complete assembly services including mechanical assembly, sub-assembly, and testing. Kitting and packaging solutions available.",
     features: [
@@ -105,7 +110,16 @@ const ServicesPage = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <div key={index} className="bg-card rounded-lg p-6 card-hover border border-border">
-                <service.icon className="h-12 w-12 text-primary mb-4" />
+                <div className="h-16 w-16 mb-4 bg-primary/10 rounded-xl flex items-center justify-center">
+                  {service.isAssembly ? (
+                    <div className="relative">
+                      <Wrench className="h-8 w-8 text-primary" />
+                      <Sparkles className="h-4 w-4 text-primary absolute -top-1 -right-1" />
+                    </div>
+                  ) : service.customIcon ? (
+                    <img src={service.customIcon} alt={service.title} className="h-10 w-10 object-contain" />
+                  ) : null}
+                </div>
                 <h3 className="text-xl font-semibold text-foreground mb-3">{service.title}</h3>
                 <p className="text-muted-foreground text-sm mb-4">{service.description}</p>
                 <ul className="space-y-2">
