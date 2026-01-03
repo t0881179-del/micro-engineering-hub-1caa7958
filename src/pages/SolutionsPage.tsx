@@ -126,9 +126,9 @@ const SolutionsPage = () => {
               Deep expertise across multiple industries with specialized solutions for each sector.
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex flex-wrap justify-center gap-6">
             {industries.map((industry, index) => (
-              <div key={index} className="bg-card rounded-lg p-6 card-hover border border-border">
+              <div key={index} className="bg-card rounded-lg p-6 card-hover border border-border w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
                 <h3 className="text-xl font-semibold text-foreground mb-3">{industry.name}</h3>
                 <p className="text-muted-foreground text-sm">{industry.description}</p>
               </div>
