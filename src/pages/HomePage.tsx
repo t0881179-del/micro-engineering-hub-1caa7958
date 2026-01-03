@@ -76,7 +76,7 @@ const HomePage = () => {
                 <span className="text-white/80">Years Experience</span>
               </div>
               <div>
-                <span className="font-bold text-2xl block text-white">2500+</span>
+                <span className="font-bold text-2xl block text-white">1500+</span>
                 <span className="text-white/80">Projects Completed</span>
               </div>
               <div>
