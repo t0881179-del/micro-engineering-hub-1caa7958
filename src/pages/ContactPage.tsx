@@ -35,7 +35,8 @@ const ContactPage = () => {
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-12">
             <div>
-              <h2 className="text-2xl font-bold text-foreground mb-6">Send Us an Inquiry</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-2">Send Us an Inquiry</h2>
+              <p className="text-sm text-muted-foreground mb-6">* Fields are required</p>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid md:grid-cols-2 gap-4">
                   <Input placeholder="Your Name *" required value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
