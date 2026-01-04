@@ -25,6 +25,11 @@ const capabilities = [
     icon: iconCnc,
   },
   {
+    title: "Prototype Parts",
+    description: "Rapid prototyping with no minimum order quantity",
+    icon: iconPrototype,
+  },
+  {
     title: "VMC Machining",
     description: "Vertical machining centers for accurate multi-axis operations",
     icon: iconVmc,
@@ -33,11 +38,6 @@ const capabilities = [
     title: "Stamping, Tube Bending & Metal Fabrication",
     description: "Sheet metal stamping, tube bending and custom fabrication solutions",
     icon: iconStamping,
-  },
-  {
-    title: "Prototype Parts",
-    description: "Rapid prototyping with no minimum order quantity",
-    icon: iconPrototype,
   },
 ];
 
