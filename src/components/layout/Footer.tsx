@@ -6,10 +6,10 @@ const Footer = () => {
   return (
     <footer className="bg-industrial-dark text-primary-foreground">
       {/* Main Footer */}
-      <div className="container-custom py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="container-custom py-8 md:py-10">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {/* Company Info */}
-          <div className="space-y-4">
+          <div className="space-y-3 col-span-2 lg:col-span-1">
             <Link to="/" className="flex items-center gap-3">
               <img src={logo} alt="Micro Engineering" className="h-12 w-auto brightness-0 invert" />
               <div>
@@ -24,8 +24,8 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-6">Quick Links</h4>
-            <ul className="space-y-3">
+            <h4 className="text-base font-semibold mb-3">Quick Links</h4>
+            <ul className="space-y-1.5">
               {[
                 { name: "Home", path: "/" },
                 { name: "About Us", path: "/about" },
@@ -49,8 +49,8 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold mb-6">Our Services</h4>
-            <ul className="space-y-3">
+            <h4 className="text-base font-semibold mb-3">Our Services</h4>
+            <ul className="space-y-1.5">
               {[
                 "CNC Machining",
                 "VMC Machining",
@@ -69,8 +69,8 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold mb-6">Contact Us</h4>
-            <ul className="space-y-4">
+            <h4 className="text-base font-semibold mb-3">Contact Us</h4>
+            <ul className="space-y-2">
               <li>
                 <a href="tel:+919999999999" className="flex items-start gap-3 text-muted-foreground hover:text-accent transition-colors">
                   <Phone className="h-5 w-5 mt-0.5 flex-shrink-0" />
@@ -99,7 +99,7 @@ const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="border-t border-border/20">
-        <div className="container-custom py-6">
+        <div className="container-custom py-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground">
               © {new Date().getFullYear()} Micro Engineering. All rights reserved.
