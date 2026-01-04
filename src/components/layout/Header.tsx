@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
+import { useState, useEffect } from "react";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -14,6 +15,16 @@ const navLinks = [
 
 const Header = () => {
   const location = useLocation();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -41,8 +52,13 @@ const Header = () => {
       {/* Main navigation */}
       <nav className="container-custom py-2 md:py-3">
         <div className="flex items-center justify-center lg:justify-between">
-          {/* Logo - centered on mobile, left on desktop */}
-          <Link to="/" className="flex items-center gap-2 md:gap-3">
+          {/* Logo - centered on mobile, left on desktop, hides on scroll (mobile only) */}
+          <Link 
+            to="/" 
+            className={`flex items-center gap-2 md:gap-3 transition-all duration-300 ${
+              scrolled ? "lg:opacity-100 lg:h-auto lg:overflow-visible opacity-0 h-0 overflow-hidden" : "opacity-100"
+            }`}
+          >
             <img src={logo} alt="Micro Engineering Logo" className="h-8 md:h-10 w-auto" />
             <div>
               <h1 className="text-sm md:text-lg font-bold text-foreground leading-tight">Micro Engineering</h1>
