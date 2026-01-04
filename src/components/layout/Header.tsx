@@ -76,26 +76,42 @@ const Header = () => {
             </Button>
           </div>
 
-          {/* Mobile menu button */}
-          <button
-            className="lg:hidden p-1.5 rounded-md hover:bg-secondary"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+          {/* Mobile Quick Links */}
+          <div className="flex lg:hidden items-center gap-1">
+            {navLinks.slice(0, 4).map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+                  isActive(link.path)
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {link.name}
+              </Link>
+            ))}
+            {/* Mobile menu button for remaining items */}
+            <button
+              className="p-1.5 rounded-md hover:bg-secondary"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+            </button>
+          </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation - remaining items */}
         {isMenuOpen && (
-          <div className="lg:hidden mt-3 pb-3 border-t border-border pt-3 animate-fade-in">
+          <div className="lg:hidden mt-2 pb-2 border-t border-border pt-2 animate-fade-in">
             <div className="flex flex-col gap-1">
-              {navLinks.map((link) => (
+              {navLinks.slice(4).map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
                     isActive(link.path)
                       ? "bg-primary text-primary-foreground"
                       : "text-foreground hover:bg-secondary"
@@ -104,7 +120,7 @@ const Header = () => {
                   {link.name}
                 </Link>
               ))}
-              <Button asChild variant="cta" size="sm" className="mt-2">
+              <Button asChild variant="cta" size="sm" className="mt-1">
                 <Link to="/contact" onClick={() => setIsMenuOpen(false)}>Get Quote</Link>
               </Button>
             </div>
