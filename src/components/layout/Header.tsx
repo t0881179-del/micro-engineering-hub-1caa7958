@@ -77,20 +77,22 @@ const Header = () => {
         </div>
 
         {/* Mobile Navigation - below logo */}
-        <div className="flex lg:hidden items-center justify-center gap-1 mt-2 pt-2 border-t border-border flex-wrap">
-          {navLinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={`px-2 py-1 rounded text-xs font-medium transition-colors border ${
-                isActive(link.path)
-                  ? "bg-primary text-primary-foreground border-primary"
-                  : "text-muted-foreground hover:text-foreground border-border hover:border-primary"
-              }`}
-            >
-              {link.name}
-            </Link>
-          ))}
+        <div className="flex lg:hidden items-center justify-center mt-2 pt-2 border-t border-border">
+          <div className="flex items-center gap-1 flex-wrap border border-border rounded-lg p-1.5 bg-muted/30">
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+                  isActive(link.path)
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                }`}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
         </div>
       </nav>
     </header>
