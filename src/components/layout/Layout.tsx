@@ -1,6 +1,5 @@
 import Header from "./Header";
 import Footer from "./Footer";
-import FloatingContactButton from "../FloatingContactButton";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -12,7 +11,6 @@ const Layout = ({ children }: LayoutProps) => {
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />
-      <FloatingContactButton />
     </div>
   );
 };
