@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle, Wrench, Sparkles } from "lucide-react";
-import cncImage from "@/assets/cnc-machining.png";
+import { ArrowRight, CheckCircle, Wrench, Sparkles, Lightbulb } from "lucide-react";
 import customImage from "@/assets/custom-solutions.png";
 import iconCnc from "@/assets/icon-cnc.png";
 import iconVmc from "@/assets/icon-vmc.png";
@@ -139,42 +138,40 @@ const ServicesPage = () => {
       {/* Prototype Services */}
       <section className="section-padding bg-secondary">
         <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Prototype Development
-              </h2>
-              <p className="text-muted-foreground mb-6 leading-relaxed">
-                We understand that innovation starts with prototypes. Our rapid prototyping services 
-                help you validate designs quickly without the burden of minimum order quantities.
-              </p>
-              <ul className="space-y-4 mb-8">
-                {[
-                  "No minimum order quantity - order even single pieces",
-                  "Quick turnaround for urgent requirements",
-                  "Design feedback and optimization support",
-                  "Same quality as production parts",
-                  "Cost-effective prototype iterations",
-                  "Seamless transition to production",
-                ].map((item, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                    <span className="text-foreground">{item}</span>
-                  </li>
-                ))}
-              </ul>
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Prototype Development</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              We understand that innovation starts with prototypes. Our rapid prototyping services 
+              help you validate designs quickly without the burden of minimum order quantities.
+            </p>
+          </div>
+          <div className="bg-card rounded-lg p-8 card-hover border border-border max-w-4xl mx-auto">
+            <div className="flex items-center justify-center mb-6">
+              <div className="h-20 w-20 bg-primary/10 rounded-full flex items-center justify-center">
+                <Lightbulb className="h-10 w-10 text-primary" />
+              </div>
+            </div>
+            <div className="grid md:grid-cols-2 gap-4 mb-6">
+              {[
+                "No minimum order quantity - order even single pieces",
+                "Quick turnaround for urgent requirements",
+                "Design feedback and optimization support",
+                "Same quality as production parts",
+                "Cost-effective prototype iterations",
+                "Seamless transition to production",
+              ].map((item, index) => (
+                <div key={index} className="flex items-start gap-3">
+                  <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                  <span className="text-foreground text-sm">{item}</span>
+                </div>
+              ))}
+            </div>
+            <div className="text-center">
               <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
                 <Link to="/contact">
                   Request Prototype Quote <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-            </div>
-            <div>
-              <img
-                src={cncImage}
-                alt="Prototype Development"
-                className="rounded-lg shadow-lg w-full"
-              />
             </div>
           </div>
         </div>
