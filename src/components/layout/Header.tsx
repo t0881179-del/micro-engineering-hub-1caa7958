@@ -2,7 +2,6 @@ import { Link, useLocation } from "react-router-dom";
 import { Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
-import { useState, useEffect } from "react";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -15,21 +14,11 @@ const navLinks = [
 
 const Header = () => {
   const location = useLocation();
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="w-full">
       {/* Top bar - hidden on mobile */}
       <div className="bg-primary text-primary-foreground py-1.5 hidden md:block">
         <div className="container-custom flex justify-between items-center text-sm">
@@ -49,65 +38,72 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Main navigation */}
-      <nav className="container-custom py-2 md:py-3">
-        <div className="flex items-center justify-center lg:justify-between">
-          {/* Logo - centered on mobile, left on desktop, hides on scroll (mobile only) */}
-          <Link 
-            to="/" 
-            className={`flex items-center gap-2 md:gap-3 transition-all duration-300 ${
-              scrolled ? "lg:opacity-100 lg:h-auto lg:overflow-visible opacity-0 h-0 overflow-hidden" : "opacity-100"
-            }`}
-          >
-            <img src={logo} alt="Micro Engineering Logo" className="h-8 md:h-10 w-auto" />
+      {/* Logo section - scrolls with page on mobile, part of sticky header on desktop */}
+      <div className="lg:hidden border-b bg-background py-2">
+        <div className="container-custom flex items-center justify-center">
+          <Link to="/" className="flex items-center gap-2">
+            <img src={logo} alt="Micro Engineering Logo" className="h-8 w-auto" />
             <div>
-              <h1 className="text-sm md:text-lg font-bold text-foreground leading-tight">Micro Engineering</h1>
-              <p className="text-[9px] md:text-xs text-muted-foreground">Precision Manufacturing</p>
+              <h1 className="text-sm font-bold text-foreground leading-tight">Micro Engineering</h1>
+              <p className="text-[9px] text-muted-foreground">Precision Manufacturing</p>
             </div>
           </Link>
-
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
-                  isActive(link.path)
-                    ? "bg-primary text-primary-foreground"
-                    : "text-foreground hover:bg-secondary hover:text-foreground"
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
-          </div>
-
-          {/* CTA Button */}
-          <div className="hidden lg:flex items-center gap-4">
-            <Button asChild variant="cta" size="sm">
-              <Link to="/contact">Get Quote</Link>
-            </Button>
-          </div>
-
         </div>
+      </div>
 
-        {/* Mobile Navigation - below logo */}
-        <div className="flex lg:hidden items-center justify-center mt-2 pt-2 border-t border-border">
-          <div className="flex items-center justify-center gap-2 flex-wrap">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors border ${
-                  isActive(link.path)
-                    ? "bg-primary text-primary-foreground border-primary"
-                    : "text-muted-foreground hover:text-foreground border-border hover:border-primary"
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
+      {/* Navigation - sticky on mobile, part of main header on desktop */}
+      <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container-custom py-2 md:py-3">
+          <div className="flex items-center justify-center lg:justify-between">
+            {/* Logo - desktop only */}
+            <Link to="/" className="hidden lg:flex items-center gap-3">
+              <img src={logo} alt="Micro Engineering Logo" className="h-10 w-auto" />
+              <div>
+                <h1 className="text-lg font-bold text-foreground leading-tight">Micro Engineering</h1>
+                <p className="text-xs text-muted-foreground">Precision Manufacturing</p>
+              </div>
+            </Link>
+
+            {/* Mobile Navigation */}
+            <div className="flex lg:hidden items-center justify-center gap-2 flex-wrap">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors border ${
+                    isActive(link.path)
+                      ? "bg-primary text-primary-foreground border-primary"
+                      : "text-muted-foreground hover:text-foreground border-border hover:border-primary"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center gap-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
+                    isActive(link.path)
+                      ? "bg-primary text-primary-foreground"
+                      : "text-foreground hover:bg-secondary hover:text-foreground"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+
+            {/* CTA Button */}
+            <div className="hidden lg:flex items-center gap-4">
+              <Button asChild variant="cta" size="sm">
+                <Link to="/contact">Get Quote</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </nav>
