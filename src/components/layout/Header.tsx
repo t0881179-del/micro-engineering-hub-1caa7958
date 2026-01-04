@@ -40,8 +40,8 @@ const Header = () => {
 
       {/* Main navigation */}
       <nav className="container-custom py-2 md:py-3">
-        <div className="flex items-center justify-between">
-          {/* Logo - smaller on mobile, same content */}
+        <div className="flex items-center justify-center lg:justify-between">
+          {/* Logo - centered on mobile, left on desktop */}
           <Link to="/" className="flex items-center gap-2 md:gap-3">
             <img src={logo} alt="Micro Engineering Logo" className="h-8 md:h-10 w-auto" />
             <div>
