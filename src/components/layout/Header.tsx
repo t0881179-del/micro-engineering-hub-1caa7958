@@ -1,6 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
-import { Menu, X, Phone, Mail } from "lucide-react";
+import { Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 
@@ -14,7 +13,6 @@ const navLinks = [
 ];
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
   const isActive = (path: string) => location.pathname === path;
@@ -76,56 +74,24 @@ const Header = () => {
             </Button>
           </div>
 
-          {/* Mobile Quick Links */}
-          <div className="flex lg:hidden items-center gap-1">
-            {navLinks.slice(0, 4).map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
-                  isActive(link.path)
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
-            {/* Mobile menu button for remaining items */}
-            <button
-              className="p-1.5 rounded-md hover:bg-secondary"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              {isMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-            </button>
-          </div>
         </div>
 
-        {/* Mobile Navigation - remaining items */}
-        {isMenuOpen && (
-          <div className="lg:hidden mt-2 pb-2 border-t border-border pt-2 animate-fade-in">
-            <div className="flex flex-col gap-1">
-              {navLinks.slice(4).map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
-                    isActive(link.path)
-                      ? "bg-primary text-primary-foreground"
-                      : "text-foreground hover:bg-secondary"
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              ))}
-              <Button asChild variant="cta" size="sm" className="mt-1">
-                <Link to="/contact" onClick={() => setIsMenuOpen(false)}>Get Quote</Link>
-              </Button>
-            </div>
-          </div>
-        )}
+        {/* Mobile Navigation - below logo */}
+        <div className="flex lg:hidden items-center justify-center gap-1 mt-2 pt-2 border-t border-border flex-wrap">
+          {navLinks.map((link) => (
+            <Link
+              key={link.path}
+              to={link.path}
+              className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+                isActive(link.path)
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {link.name}
+            </Link>
+          ))}
+        </div>
       </nav>
     </header>
   );
