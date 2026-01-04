@@ -16,14 +16,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-// Database credentials - UPDATE THESE!
+// Database credentials
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'your_database_name');  // Change this
-define('DB_USER', 'your_database_user');  // Change this
-define('DB_PASS', 'your_database_password');  // Change this
+define('DB_NAME', 'u770567693_microeng_admin');
+define('DB_USER', 'u770567693_microeng_admin');
+define('DB_PASS', '.pdJjh?4Y^23');
 
 // JWT Secret for authentication
-define('JWT_SECRET', 'your-secret-key-change-this-in-production');
+define('JWT_SECRET', 'microeng-admin-secret-2024-xyz');
 
 // Session configuration
 session_start();
