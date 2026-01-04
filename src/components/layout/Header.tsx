@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
-import { Phone, Mail } from "lucide-react";
+import { useState } from "react";
+import { Menu, X, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 
@@ -13,6 +14,7 @@ const navLinks = [
 ];
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
   const isActive = (path: string) => location.pathname === path;
@@ -74,30 +76,40 @@ const Header = () => {
             </Button>
           </div>
 
-          {/* CTA Button - Mobile */}
-          <Button asChild variant="cta" size="sm" className="lg:hidden">
-            <Link to="/contact">Quote</Link>
-          </Button>
+          {/* Mobile menu button */}
+          <button
+            className="lg:hidden p-1.5 rounded-md hover:bg-secondary"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
 
-        {/* Mobile Horizontal Scroll Navigation */}
-        <div className="lg:hidden -mx-4 px-4 overflow-x-auto scrollbar-hide">
-          <div className="flex items-center gap-1 py-2 min-w-max">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${
-                  isActive(link.path)
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-secondary text-foreground hover:bg-secondary/80"
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <div className="lg:hidden mt-3 pb-3 border-t border-border pt-3 animate-fade-in">
+            <div className="flex flex-col gap-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    isActive(link.path)
+                      ? "bg-primary text-primary-foreground"
+                      : "text-foreground hover:bg-secondary"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              ))}
+              <Button asChild variant="cta" size="sm" className="mt-2">
+                <Link to="/contact" onClick={() => setIsMenuOpen(false)}>Get Quote</Link>
+              </Button>
+            </div>
           </div>
-        </div>
+        )}
       </nav>
     </header>
   );
