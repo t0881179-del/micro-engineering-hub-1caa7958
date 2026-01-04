@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle, Wrench, Sparkles } from "lucide-react";
 import cncImage from "@/assets/cnc-machining.png";
-import customImage from "@/assets/custom-solutions.png";
+import additionalServicesImage from "@/assets/additional-services.png";
 import iconCnc from "@/assets/icon-cnc.png";
 import iconVmc from "@/assets/icon-vmc.png";
 import iconStamping from "@/assets/icon-stamping.png";
@@ -212,7 +212,7 @@ const ServicesPage = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <img
-                src={customImage}
+                src={additionalServicesImage}
                 alt="Additional Services"
                 className="rounded-lg shadow-lg w-full"
               />
