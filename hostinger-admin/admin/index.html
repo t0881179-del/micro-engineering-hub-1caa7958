@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Micro Engineering</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .sidebar { transition: transform 0.3s ease; }
+        .sidebar.closed { transform: translateX(-100%); }
+        .content { transition: margin-left 0.3s ease; }
+        .toggle-switch { position: relative; display: inline-block; width: 50px; height: 26px; }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .toggle-slider { position: absolute; cursor: pointer; inset: 0; background-color: #ccc; border-radius: 26px; transition: 0.3s; }
+        .toggle-slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: white; border-radius: 50%; transition: 0.3s; }
+        input:checked + .toggle-slider { background-color: #10b981; }
+        input:checked + .toggle-slider:before { transform: translateX(24px); }
+        .card-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
+        .notification-badge { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Login Screen -->
+    <div id="loginScreen" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 to-gray-900">
+        <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md">
+            <div class="text-center mb-8">
+                <i class="fas fa-cogs text-5xl text-blue-600 mb-4"></i>
+                <h1 class="text-2xl font-bold text-gray-800">Micro Engineering</h1>
+                <p class="text-gray-500">Admin Panel</p>
+            </div>
+            <form id="loginForm">
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-semibold mb-2">Username</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                            <i class="fas fa-user"></i>
+                        </span>
+                        <input type="text" id="username" class="w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter username" required>
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-semibold mb-2">Password</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                        <input type="password" id="password" class="w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter password" required>
+                    </div>
+                </div>
+                <div id="loginError" class="hidden mb-4 p-3 bg-red-100 text-red-700 rounded-lg text-sm"></div>
+                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-semibold">
+                    <i class="fas fa-sign-in-alt mr-2"></i>Login
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminDashboard" class="hidden">
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar fixed left-0 top-0 h-full w-64 bg-gray-900 text-white z-50">
+            <div class="p-4 border-b border-gray-700">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-cogs text-2xl text-blue-400"></i>
+                    <div>
+                        <h2 class="font-bold">Micro Engineering</h2>
+                        <p class="text-xs text-gray-400">Admin Panel</p>
+                    </div>
+                </div>
+            </div>
+            <nav class="p-4">
+                <ul class="space-y-2">
+                    <li>
+                        <a href="#" onclick="showSection('dashboard')" class="nav-link flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-800 transition" data-section="dashboard">
+                            <i class="fas fa-tachometer-alt w-5"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showSection('pages')" class="nav-link flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-800 transition" data-section="pages">
+                            <i class="fas fa-file-alt w-5"></i>
+                            <span>Page Settings</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showSection('gallery')" class="nav-link flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-800 transition" data-section="gallery">
+                            <i class="fas fa-images w-5"></i>
+                            <span>Gallery</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showSection('services')" class="nav-link flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-800 transition" data-section="services">
+                            <i class="fas fa-tools w-5"></i>
+                            <span>Services</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showSection('messages')" class="nav-link flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-800 transition" data-section="messages">
+                            <i class="fas fa-envelope w-5"></i>
+                            <span>Messages</span>
+                            <span id="messagesBadge" class="hidden notification-badge bg-red-500 text-xs px-2 py-1 rounded-full ml-auto">0</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showSection('settings')" class="nav-link flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-800 transition" data-section="settings">
+                            <i class="fas fa-cog w-5"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-700">
+                <button onclick="logout()" class="w-full flex items-center justify-center space-x-2 p-3 bg-red-600 rounded-lg hover:bg-red-700 transition">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div id="mainContent" class="ml-64 min-h-screen">
+            <!-- Top Bar -->
+            <div class="bg-white shadow-sm p-4 flex items-center justify-between sticky top-0 z-40">
+                <button onclick="toggleSidebar()" class="text-gray-600 hover:text-gray-800 lg:hidden">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <div class="flex items-center space-x-4">
+                    <span class="text-gray-600">Welcome, <strong id="adminUsername">Admin</strong></span>
+                    <a href="/" target="_blank" class="text-blue-600 hover:text-blue-800">
+                        <i class="fas fa-external-link-alt mr-1"></i>View Website
+                    </a>
+                </div>
+            </div>
+
+            <!-- Dashboard Section -->
+            <div id="section-dashboard" class="section p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Dashboard</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white rounded-xl shadow-sm p-6 card-hover transition">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-500 text-sm">Active Pages</p>
+                                <p id="statActivePages" class="text-3xl font-bold text-gray-800">0</p>
+                            </div>
+                            <div class="bg-blue-100 p-3 rounded-lg">
+                                <i class="fas fa-file-alt text-2xl text-blue-600"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm p-6 card-hover transition">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-500 text-sm">Gallery Images</p>
+                                <p id="statGalleryImages" class="text-3xl font-bold text-gray-800">0</p>
+                            </div>
+                            <div class="bg-green-100 p-3 rounded-lg">
+                                <i class="fas fa-images text-2xl text-green-600"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm p-6 card-hover transition">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-500 text-sm">Services</p>
+                                <p id="statServices" class="text-3xl font-bold text-gray-800">0</p>
+                            </div>
+                            <div class="bg-yellow-100 p-3 rounded-lg">
+                                <i class="fas fa-tools text-2xl text-yellow-600"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm p-6 card-hover transition">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-500 text-sm">Unread Messages</p>
+                                <p id="statMessages" class="text-3xl font-bold text-gray-800">0</p>
+                            </div>
+                            <div class="bg-red-100 p-3 rounded-lg">
+                                <i class="fas fa-envelope text-2xl text-red-600"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Quick Actions</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <button onclick="showSection('pages')" class="p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition">
+                            <i class="fas fa-toggle-on text-2xl text-gray-400 mb-2"></i>
+                            <p class="text-sm text-gray-600">Toggle Pages</p>
+                        </button>
+                        <button onclick="showSection('gallery')" class="p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-green-500 hover:bg-green-50 transition">
+                            <i class="fas fa-plus-circle text-2xl text-gray-400 mb-2"></i>
+                            <p class="text-sm text-gray-600">Add Image</p>
+                        </button>
+                        <button onclick="showSection('services')" class="p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-yellow-500 hover:bg-yellow-50 transition">
+                            <i class="fas fa-plus-square text-2xl text-gray-400 mb-2"></i>
+                            <p class="text-sm text-gray-600">Add Service</p>
+                        </button>
+                        <button onclick="showSection('messages')" class="p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-red-500 hover:bg-red-50 transition">
+                            <i class="fas fa-inbox text-2xl text-gray-400 mb-2"></i>
+                            <p class="text-sm text-gray-600">View Messages</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pages Section -->
+            <div id="section-pages" class="section hidden p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Page Settings</h2>
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <p class="text-gray-600 mb-6">Toggle pages on/off to show or hide them on your website.</p>
+                    <div id="pagesList" class="space-y-4">
+                        <!-- Pages will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Section -->
+            <div id="section-gallery" class="section hidden p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Gallery</h2>
+                    <button onclick="openGalleryModal()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                        <i class="fas fa-plus mr-2"></i>Add Image
+                    </button>
+                </div>
+                <div id="galleryGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Gallery items will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Services Section -->
+            <div id="section-services" class="section hidden p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Services</h2>
+                    <button onclick="openServiceModal()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                        <i class="fas fa-plus mr-2"></i>Add Service
+                    </button>
+                </div>
+                <div id="servicesList" class="space-y-4">
+                    <!-- Services will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Messages Section -->
+            <div id="section-messages" class="section hidden p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Contact Messages</h2>
+                <div id="messagesList" class="space-y-4">
+                    <!-- Messages will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Settings Section -->
+            <div id="section-settings" class="section hidden p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Settings</h2>
+                <div class="bg-white rounded-xl shadow-sm p-6 max-w-md">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Change Password</h3>
+                    <form id="changePasswordForm">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-semibold mb-2">Current Password</label>
+                            <input type="password" id="currentPassword" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-semibold mb-2">New Password</label>
+                            <input type="password" id="newPassword" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-semibold mb-2">Confirm New Password</label>
+                            <input type="password" id="confirmPassword" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
+                            Update Password
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Modal -->
+    <div id="galleryModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-xl p-6 w-full max-w-md mx-4">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">Add Gallery Image</h3>
+            <form id="galleryForm">
+                <input type="hidden" id="galleryEditId">
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-semibold mb-2">Title</label>
+                    <input type="text" id="galleryTitle" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-semibold mb-2">Description</label>
+                    <textarea id="galleryDescription" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-semibold mb-2">Image URL</label>
+                    <input type="url" id="galleryImageUrl" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="https://..." required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-semibold mb-2">Category</label>
+                    <select id="galleryCategory" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="cnc">CNC Machining</option>
+                        <option value="fabrication">Fabrication</option>
+                        <option value="prototype">Prototype</option>
+                        <option value="general">General</option>
+                    </select>
+                </div>
+                <div class="flex space-x-4">
+                    <button type="button" onclick="closeGalleryModal()" class="flex-1 bg-gray-300 text-gray-800 py-2 rounded-lg hover:bg-gray-400 transition">Cancel</button>
+                    <button type="submit" class="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Service Modal -->
+    <div id="serviceModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-xl p-6 w-full max-w-md mx-4">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">Add Service</h3>
+            <form id="serviceForm">
+                <input type="hidden" id="serviceEditId">
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-semibold mb-2">Title</label>
+                    <input type="text" id="serviceTitle" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-semibold mb-2">Description</label>
+                    <textarea id="serviceDescription" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-semibold mb-2">Icon (FontAwesome class)</label>
+                    <input type="text" id="serviceIcon" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="fas fa-cogs">
+                </div>
+                <div class="flex space-x-4">
+                    <button type="button" onclick="closeServiceModal()" class="flex-1 bg-gray-300 text-gray-800 py-2 rounded-lg hover:bg-gray-400 transition">Cancel</button>
+                    <button type="submit" class="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
