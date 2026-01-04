@@ -82,10 +82,10 @@ const Header = () => {
             <Link
               key={link.path}
               to={link.path}
-              className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+              className={`px-2 py-1 rounded text-xs font-medium transition-colors border ${
                 isActive(link.path)
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground"
+                  ? "bg-primary text-primary-foreground border-primary"
+                  : "text-muted-foreground hover:text-foreground border-border hover:border-primary"
               }`}
             >
               {link.name}
