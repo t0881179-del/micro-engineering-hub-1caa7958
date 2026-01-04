@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle, Wrench, Sparkles } from "lucide-react";
 import cncImage from "@/assets/cnc-machining.png";
+import prototypeImage from "@/assets/prototype-development.png";
 import additionalServicesImage from "@/assets/additional-services.png";
 import iconCnc from "@/assets/icon-cnc.png";
 import iconVmc from "@/assets/icon-vmc.png";
@@ -171,7 +172,7 @@ const ServicesPage = () => {
             </div>
             <div>
               <img
-                src={cncImage}
+                src={prototypeImage}
                 alt="Prototype Development"
                 className="rounded-lg shadow-lg w-full"
               />
