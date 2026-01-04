@@ -19,8 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 // Database credentials
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'u770567693_microeng_admin');
-define('DB_USER', 'u770567693_microeng_admin');
-define('DB_PASS', '.pdJjh?4Y^23');
+define('DB_USER', 'u770567693_microggn');
+define('DB_PASS', '.pdJjh?4Y^23bij');
 
 // JWT Secret for authentication
 define('JWT_SECRET', 'microeng-admin-secret-2024-xyz');
