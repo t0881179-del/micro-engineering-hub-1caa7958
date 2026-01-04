@@ -78,15 +78,15 @@ const Header = () => {
 
         {/* Mobile Navigation - below logo */}
         <div className="flex lg:hidden items-center justify-center mt-2 pt-2 border-t border-border">
-          <div className="flex items-center justify-center gap-1.5 flex-wrap border border-border rounded-lg p-2 bg-muted/30">
+          <div className="flex items-center justify-center gap-2 flex-wrap">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`px-2.5 py-1 rounded text-xs font-medium transition-colors ${
+                className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors border ${
                   isActive(link.path)
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "text-muted-foreground hover:text-foreground border-border hover:border-primary"
                 }`}
               >
                 {link.name}
